@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input{
+            width: 300px;
+            height: 50px;
+            border-bottom-left-radius: 10px;
+            border-top-left-radius: 10px;
+            border: 2px solid orange;
+            outline: none;
+            font-size: 15px;
+            vertical-align:top;
+        }
+        .add{
+            background-color: cornflowerblue;
+            color: aliceblue;
+            font-size: 20px;
+            display: inline-block;
+            width: 50px;
+            height: 52px;
+            line-height: 50px;
+            text-align: center;
+            border-bottom-right-radius: 10px;
+            border-top-right-radius: 10px;
+            border: 2px solid orange;
+            border-left:0px;
+        }
+        .show{
+            width: 352px;
+            border:1px solid rgb(143, 139, 139);
+            position: relative;
+            height: 200px;
+        }
+        .count,.clear{
+            color:rgb(111, 111, 111);
+            font-size: 10px;
+            position: absolute;
+            bottom:0px;
+            right:0px;
+        }
+        .count{
+            left:0px;
+        }
+        ul{
+            width: 100%;
+            position: absolute;
+            left:-30px;
+            top:-10px;
+        }
+        li{
+            width: 100%;
+            list-style: none;
+            font-size: 15px;
+            color:rgb(118, 118, 118);
+        }
+        .del{
+            position: absolute;
+            right:20px;
+            font-size: 10px;
+            color:rgb(118, 118, 118);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model.trim="msg" @keyup.enter="add()"><span class="add" @click="add()">添加</span>
+        <div class="show">
+            <ul>
+                <li v-for="(item,index) in list" :key="index">{{index+1}}.{{item}}<span class="del" @click="del(index)">X</span></li>
+            </ul>
+            <span class="count" v-show="list.length>0">合计：{{list.length}}</span>
+            <span class="clear" v-show="list.length>0" @click="clear()">清空内容</span>
+        </div>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                list:[],
+                msg:''
+            },
+            methods:{
+                clear(){
+                    this.list=[]
+                },
+                add(){
+                    if(this.msg==''){
+                        alert('请输入有效字符')
+                        return
+                    }
+                    this.list.push(this.msg)
+                    this.msg=''
+                },
+                del(index){
+                    this.list=this.list.filter((item,ind)=>{
+                        return ind!=index
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

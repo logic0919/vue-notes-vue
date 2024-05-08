@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .a{
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- v-bind:
+    作用:动态的设置html的标签属性-> src url title
+    语法:v-bind:属性名="表达式
+    注意:简写形式:属性名="表达式 -->
+    <div id="app">
+        <img v-bind:src="src" alt="">
+        <span :class="a">111</span>
+        <!-- 等同于：v-bind的简写形式
+        <img :src="src" alt=""> -->
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                src: "./img/2.png",
+                a:'a'
+            }
+        })
+    </script>
+</body>
+
+</html>

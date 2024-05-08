@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- v-show:
+        减少渲染带来的开销
+        原理:切换 display:none 控制显示隐藏
+        场景:频繁切换显示隐藏的场景
+
+        v-if:
+        是重新渲染
+        原理:基于条件判断，是否 创建 或 移除 元素节点
+        场景: 要么显示，要么隐藏，不频繁切换的场景 
+    
+        两者在隐藏之后不占原本的位置-->
+
+        <div v-if="msg">我是由v-show控制隐藏的盒子</div>
+        <div v-if="true">我是由v-if控制隐藏的盒子</div>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                msg: true
+            }
+        })
+    </script>
+</body>
+
+</html>

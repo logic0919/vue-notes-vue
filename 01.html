@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 插值表达式 -->
+        <!-- 注意点:
+        1.使用的数据要存在
+        2.支持的是表达式，不是语句 if for
+        3.不能在标签属性中使用 {{ }} -->
+        <h1>{{msg}}</h1>
+        <h1>{{msg+'可以使用+连接字符串的格式'}}</h1>
+        <h1>{{msg.toUpperCase()}}</h1>
+        <a href="">{{count}}</a>
+        <h1>{{1>2}}</h1>
+        <h1>{{friend.age}}</h1>
+        <h1>{{'tt'}}</h1>
+        <!-- <h1>{{tt}}</h1> 这样会出错-->
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        const app=new Vue({
+            el:'#app',
+            data:{
+                // 响应式数据特点：数据改变，视图会自动更新，即数据驱动视图
+                msg:'hello',
+                count:'vue',
+                friend:{
+                    age:10
+                }
+            }
+        })
+        console.log(app);
+        // data中的数据, 最终会被添加到实例上
+        console.log(app.count);
+        app.count=666
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 第一种方法：
+        v-on注册事件
+        v-on:事件名="内联语句" -->
+        <button @click="count--">-</button>
+        <span>{{count}}</span>
+        <!-- v-on:可替换成@ -->
+        <button @click="count++">+</button>
+
+        <!-- 第二种方法：
+        v-on:事件名="methods中的函数名" -->
+        <hr>
+        <button v-on:click="fn" v-html="btn"></button>
+        <h2 v-show="isshow">点击切换显示与隐藏</h2>
+
+        <hr>
+        <button @click="buy(8)">点击扣除8元</button>
+        <button @click="buy(10)">点击扣除10元</button>
+        <div v-html="money"></div>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                count:100,
+                isshow:true,
+                btn:'点击',
+                money:200
+            },
+            methods:{
+                fn(){
+                    this.isshow=!this.isshow
+                },
+                buy(price){
+                    this.money-=price
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

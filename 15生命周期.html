@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="count++">+</button>
+        <div class="a">{{count}}</div>
+        <button @click="count--">-</button>
+        <input type="text" name="" id="">
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        // 生命周期四个阶段：创建、挂载、更新、销毁
+        // 生命周期函数（钩子函数）：
+        // beforeCreate、created响应式数据
+        // beforeMount、mounted渲染模板
+        // beforeUpdate、updated更新阶段
+        // beforeDestory、destoryed销毁实例
+        const app = new Vue({
+            el: '#app',
+            data: {
+                count:100
+            },
+            beforeCreate(){
+                console.log(this.count);
+            },
+            // 如果要发请求则在created中
+            created(){
+                console.log(this.count);
+            },
+            beforeMount(){
+                console.log(document.querySelector('.a'));
+            },
+            // 如果要操作dom，则最早在mounted之前
+            mounted(){
+                console.log(document.querySelector('.a'));
+                document.querySelector('input').focus()
+            },
+            beforeUpdate(){
+                console.log('数据修改了，视图还没更新');
+            },
+            updated(){
+                console.log('视图已经更新');
+            },
+            beforeDestory(){
+                console.log('beforeDestory');
+            },
+            destoryed(){
+                console.log('destoryed');
+            },
+
+        })
+    </script>
+</body>
+
+</html>

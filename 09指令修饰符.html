@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 1.按键修饰符
+    @keyup.enter:键盘回车监听
+    2.v-model修饰符
+    v-model.trim:去除首尾空格
+    v-model.number:转数字
+    3.事件修饰符
+    @事件名.stop:阻止冒泡
+    @事件名.prevent:阻止默认行为 -->
+    <div id="app">
+        <form action="">
+            <input type="text" @keyup.enter="alert()" v-model.trim="inp1">
+            <input type="submit" @click.prevent>
+        </form>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                inp1:''
+            },
+            methods:{
+                alert(){
+                    alert(this.inp1)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

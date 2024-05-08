@@ -1,0 +1,9 @@
+1.
+data 
+methods 
+computed 内部是有return语句的函数，但使用时不用函数形式
+watch 侦听器
+directives 自定义指令
+2.内置指令
+v-html v-text v-show v-if v-else v-else-if v-for v-on(监听事件)@ v-bind(添加属性)(也可以添加class属性): v-model(数据双向绑定) 
+v-slot(对应插槽的name值)#(#default也就是v-slot:default就是对应默认的插槽)

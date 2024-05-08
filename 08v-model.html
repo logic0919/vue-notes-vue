@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="un"><br>
+        <input type="password" v-model="pwd"><br>
+        <button @click="login()">登录</button>
+        <button @click="reset()">重置</button>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                un: '',
+                pwd:''
+            },
+            methods:{
+                login(){
+                    console.log(this.un,this.pwd);
+                },
+                reset(){
+                    this.un=''
+                    this.pwd=''
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

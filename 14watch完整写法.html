@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <select name="lang" id="" v-model="obj.lang">
+            <option value="Chinese">中文</option>
+            <option value="german">德语</option>
+            <option value="english">英语</option>
+        </select>
+        <textarea cols="30" rows="10" v-model="obj.words"></textarea>
+        <textarea cols="30" rows="10" v-model="show"></textarea>
+    </div>
+    <script src="vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                timer: null,
+                obj: {
+                    words: '',
+                    lang: '',
+                },
+                show: '',
+            },
+            watch: {
+                // 这是加了防抖效果后的
+                // 时刻监视，定时请求
+                obj: {
+                    deep: true,//深度监视，对对象里面的所有子属性都会监视，只要有一个属性变了，都会被监视到
+                    immediate:true,//立刻执行，一进入页面就会执行
+                    handler(newvalue) {
+                        clearTimeout(this.timer)
+                        this.timer = setTimeout(async () => {
+                            const res = await axios({
+                                url: 'https://applet-base-api-t.itheima.net/api/translate',
+                                params: newvalue
+                            })
+                            this.show = res.data.data
+                        }, 500)
+                    }
+                },
+
+
+
+                // 'obj.words'(newvalues, oldvalues){
+                //     console.log(newvalues,oldvalues);
+                
+                // }
+            }
+        })
+    </script>
+</body>
+
+</html>

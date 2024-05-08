@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active{
+            background-color: red;
+        }
+        section{
+            width: 300px;
+            height: 30px;
+            border: 1px solid red;
+            margin-top:10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <section v-for="(item,index) in list" :class="{active:activeindex==index}" :key="item.id" @click="activeindex=index">{{item.msg}}</section>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                list:[{
+                    id:0,
+                    msg:'第一列'
+                },{
+                    id: 1,
+                    msg: '第一列'
+                },{
+                    id: 2,
+                    msg: '第一列'
+                }],
+                activeindex:0
+            }
+        })
+    </script>
+</body>
+
+</html>

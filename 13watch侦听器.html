@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <textarea cols="30" rows="10" v-model="words"></textarea>
+        <textarea cols="30" rows="10" v-model="show"></textarea>
+    </div>
+    <script src="vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                words: '',
+                show: '',
+                timer: null,
+                // obj:{
+                //     words:'',
+                //     show:''
+                // }
+            },
+            watch: {
+                // 这是第一版，没有防抖效果，性能不佳
+                // async words(newvalues, oldvalues){
+                //     const res=await axios({
+                //         url: 'https://applet-base-api-t.itheima.net/api/translate',
+                //         params:{
+                //             words:newvalues
+                //         }
+                //     })
+                //     this.show=res.data.data
+                // },
+
+
+                // 这是加了防抖效果后的
+                // 时刻监视，定时请求
+                words(newvalues) {
+                    clearTimeout(this.timer)
+                    this.timer = setTimeout(async () => {
+                        const res = await axios({
+                            url: 'https://applet-base-api-t.itheima.net/api/translate',
+                            params: {
+                                words: newvalues
+                            }
+                        })
+                        this.show = res.data.data
+                    }, 500)
+                }
+
+
+
+                // 'obj.words'(newvalues, oldvalues){
+                //     console.log(newvalues,oldvalues);
+                // }
+            }
+        })
+    </script>
+</body>
+
+</html>
